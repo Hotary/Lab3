@@ -8,7 +8,9 @@ namespace Lab3
 {
     public class Neuron
     {
+        //Выходное значение
         public double Output;
+        //Базис
         public double Base;
     }
 }

@@ -8,12 +8,16 @@ namespace Lab3
 {
     public class Layer
     {
+        //Размер слоя
         public int Size;
+        //Нейроны
         public Neuron[] Neurons;
+        //Веса
         public double[][] Weights;
 
         public Layer() { }
 
+        //Инициализируем слой, задаем кол-во нейронов
         public void Init(int size, int next) 
         {
             Size = size;
@@ -27,6 +31,7 @@ namespace Lab3
             }
         }
 
+        // пока не используется
         public void LoadConfig(double[][] data) 
         {
             Size = data.Length;
@@ -37,6 +42,7 @@ namespace Lab3
             //}
         }
 
+        // пока не используется
         public double[][] SaveConfig() 
         {
             var data = new double[Size][];

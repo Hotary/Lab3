@@ -8,15 +8,22 @@ namespace Lab3
 {
     public class NeuralNetwork
     {
+        // Слои
         public Layer[] Layers;
+        // Входной слой
         public Layer Input => Layers.First();
+        // Выходной слой
         public Layer Output => Layers.Last();
+        // Коэфф обучения
         public double LearningRate = 0.01;
+        // Активационная функция
         public Func<double, double> Activation;
+        // Производня активационной функции
         public Func<double, double> Derivative;
 
         public NeuralNetwork(int[] size) 
         {
+            // Инициализируем слои
             Layers = new Layer[size.Length];
             int prev_size = size.Length;
             for(int i = 0; i < size.Length; i++) 
@@ -31,7 +38,8 @@ namespace Lab3
 
         public void Work() 
         {
-            for(int i = 1; i < Layers.Length; i++) 
+            // Для каждого нейрона в каждом слое расчитываем выходное значение
+            for (int i = 1; i < Layers.Length; i++) 
             {
                 var l = Layers[i];
                 var pl = Layers[i - 1];
@@ -49,6 +57,7 @@ namespace Lab3
             }
         }
 
+        // Очистка выходных значений
         public void Clear() 
         {
             foreach(var l in Layers) 
@@ -60,6 +69,7 @@ namespace Lab3
             }
         }
 
+        // пока не используется 
         public void LoadConfig(double[][][] data) 
         {
             for (int i = 0; i < data.Length; i++)
@@ -68,6 +78,7 @@ namespace Lab3
             }
         }
 
+        // пока не используется
         public double[][][] SaveConfig() 
         {
             var data = new double[Layers.Length][][];
@@ -78,6 +89,7 @@ namespace Lab3
             return data;
         }
 
+        // Обучение на основе алгоритма обратного распространения ошибки
         public void BackPropagation(double[] targets)
         {
             double[] errors = new double[Output.Size];
